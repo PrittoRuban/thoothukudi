@@ -6,6 +6,7 @@ import { Sidebar, SidebarBody, SidebarLink } from "../components/ui/sidebar.jsx"
 import { IconHome, IconSettings, IconUser, IconCalendar, IconHistory } from "@tabler/icons-react";
 import { MenuItem, Menu, HoveredLink } from "@/components/ui/navbar-menu.jsx";
 import HeroSectionOne from "../components/ui/HeroSectionOne.jsx"; // ✅ Import HeroSectionOne
+import { FeaturesSectionDemo } from "@/components/ui/features.jsx";
 
 export default function Home() {
   return (
@@ -50,6 +51,8 @@ export default function Home() {
 
         {/* ✅ Render HeroSectionOne here */}
         <HeroSectionOne />
+
+        <FeaturesSectionDemo/>
       </div>
     </div>
   );
