@@ -10,7 +10,7 @@ const Login = () => {
 
   // State to prevent hydration issues
   const [isClient, setIsClient] = useState(false);
-  
+
   // Login form states
   const [role, setRole] = useState("user");
   const [credentials, setCredentials] = useState({
@@ -29,9 +29,9 @@ const Login = () => {
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCredentials(prev => ({
+    setCredentials((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -41,27 +41,27 @@ const Login = () => {
       setError("Please enter email or phone number");
       return false;
     }
-    
+
     if (role === "admin" && !credentials.policeIdNumber) {
       setError("Please enter Police ID Number");
       return false;
     }
-    
+
     if (!credentials.password) {
       setError("Please enter password");
       return false;
     }
-    
+
     return true;
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Reset previous errors
     setError("");
-    
+
     // Validate inputs
     if (!validateInputs()) {
       return;
@@ -72,41 +72,41 @@ const Login = () => {
 
     try {
       // Determine endpoint and payload based on role
-      const endpoint = role === "user" 
-        ? "/auth/login/user" 
-        : "/auth/login/admin";
-      
-      const payload = role === "user"
-        ? { 
-            emailOrPhone: credentials.emailOrPhone, 
-            password: credentials.password 
-          }
-        : { 
-            policeIdNumber: credentials.policeIdNumber, 
-            password: credentials.password 
-          };
+      const endpoint =
+        role === "user" ? "/auth/login/user" : "/auth/login/admin";
+
+      const payload =
+        role === "user"
+          ? {
+              emailOrPhone: credentials.emailOrPhone,
+              password: credentials.password,
+            }
+          : {
+              policeIdNumber: credentials.policeIdNumber,
+              password: credentials.password,
+            };
 
       // Perform login request
       const { data } = await axios.post(endpoint, payload, {
         headers: {
-          'Content-Type': 'application/json'
-        }
+          "Content-Type": "application/json",
+        },
       });
 
       // Store token securely
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         sessionStorage.setItem("token", data.token);
       }
 
       // Navigate to dashboard
       router.push("/dashboard");
-
     } catch (error) {
       // Handle different types of errors
-      const errorMessage = error.response?.data?.message 
-        || error.message 
-        || "Login failed. Please try again.";
-      
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Login failed. Please try again.";
+
       setError(errorMessage);
     } finally {
       // Always reset loading state
@@ -128,8 +128,8 @@ const Login = () => {
 
         {/* Role Selection */}
         <div className="mb-4">
-          <label 
-            htmlFor="role-select" 
+          <label
+            htmlFor="role-select"
             className="block mb-2 text-sm font-medium text-gray-700"
           >
             Login as:
@@ -143,7 +143,7 @@ const Login = () => {
               setCredentials({
                 emailOrPhone: "",
                 policeIdNumber: "",
-                password: ""
+                password: "",
               });
             }}
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -155,7 +155,7 @@ const Login = () => {
 
         {/* Error Message */}
         {error && (
-          <div 
+          <div
             className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-md text-sm"
             role="alert"
           >

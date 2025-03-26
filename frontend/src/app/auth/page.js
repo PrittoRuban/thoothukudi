@@ -177,7 +177,9 @@ export default function AuthPage() {
             onClick={() => setIsLogin(!isLogin)}
             className="text-purple-400 hover:text-purple-300 transition-colors"
           >
-            {isLogin ? "Need an account? Register" : "Already have an account? Login"}
+            {isLogin
+              ? "Need an account? Register"
+              : "Already have an account? Login"}
           </button>
         </div>
 
@@ -312,7 +314,13 @@ export default function AuthPage() {
             disabled={loading}
             className="w-full p-3 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? (isLogin ? "Logging in..." : "Registering...") : (isLogin ? "Login" : "Register")}
+            {loading
+              ? isLogin
+                ? "Logging in..."
+                : "Registering..."
+              : isLogin
+              ? "Login"
+              : "Register"}
           </button>
         </form>
       </div>

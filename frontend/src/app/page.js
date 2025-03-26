@@ -10,13 +10,13 @@
 //   return (
 //     <div className="flex">
 //       {/* Floating Navbar added at the top level */}
-//       <FloatingNav 
+//       <FloatingNav
 //         navItems={[
 //           { name: "Home", link: "/" },
 //           { name: "About Us", link: "/about" },
 //           { name: "Maps", link: "/maps" },
 //           { name: "Contact Us", link: "/contact" }
-//         ]} 
+//         ]}
 //       />
 
 //       <Sidebar>
@@ -41,9 +41,20 @@
 // }
 // app/page.jsx
 "use client";
+
 import React, { useCallback } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "../components/ui/sidebar.jsx";
-import { IconHome, IconSettings, IconUser, IconCalendar, IconHistory } from "@tabler/icons-react";
+import {
+  Sidebar,
+  SidebarBody,
+  SidebarLink,
+} from "../components/ui/sidebar.jsx";
+import {
+  IconHome,
+  IconSettings,
+  IconUser,
+  IconCalendar,
+  IconHistory,
+} from "@tabler/icons-react";
 import { FloatingNav } from "@/components/ui/navbar-menu.jsx";
 import HeroSectionOne from "../components/ui/HeroSectionOne.jsx";
 import { FeaturesSectionDemo } from "@/components/ui/features.jsx";

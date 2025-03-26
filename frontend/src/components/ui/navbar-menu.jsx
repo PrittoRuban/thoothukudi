@@ -10,7 +10,7 @@
 //   useEffect(() => {
 //     const handleScroll = () => {
 //       const currentScrollY = window.scrollY;
-      
+
 //       // Show navbar when scrolling up, hide when scrolling down
 //       if (currentScrollY < lastScrollY) {
 //         setIsVisible(true);
@@ -33,20 +33,20 @@
 //   return (
 //     <AnimatePresence>
 //       {isVisible && (
-//         <motion.nav 
+//         <motion.nav
 //           initial={{ opacity: 0, y: -50 }}
 //           animate={{ opacity: 1, y: 0 }}
 //           exit={{ opacity: 0, y: -50 }}
 //           transition={{ duration: 0.3 }}
-//           className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 
-//           flex space-x-6 px-8 py-4 
-//           bg-black/70 backdrop-blur-md text-white 
+//           className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50
+//           flex space-x-6 px-8 py-4
+//           bg-black/70 backdrop-blur-md text-white
 //           shadow-lg rounded-full border border-white/10"
 //         >
 //           {navItems.map((item, index) => (
-//             <Link 
+//             <Link
 //               key={index}
-//               href={item.link} 
+//               href={item.link}
 //               className="cursor-pointer text-white hover:opacity-90 transition-opacity duration-300"
 //             >
 //               {item.name}
@@ -64,13 +64,11 @@ import Link from "next/link";
 
 export const FloatingNav = ({ navItems }) => {
   return (
-    <nav 
-      className="relative flex space-x-6 px-8 py-4 bg-black text-white shadow-lg rounded-full border border-white/10"
-    >
+    <nav className="relative flex space-x-6 px-8 py-4 bg-black text-white shadow-lg rounded-full border border-white/10">
       {navItems.map((item, index) => (
-        <Link 
+        <Link
           key={index}
-          href={item.link} 
+          href={item.link}
           className="cursor-pointer text-white hover:opacity-90 transition-opacity duration-300"
         >
           {item.name}

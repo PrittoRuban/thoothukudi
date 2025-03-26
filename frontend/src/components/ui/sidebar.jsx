@@ -19,7 +19,7 @@ export const SidebarProvider = ({
   children,
   open: openProp,
   setOpen: setOpenProp,
-  animate = true
+  animate = true,
 }) => {
   const [openState, setOpenState] = useState(false);
 
@@ -33,12 +33,7 @@ export const SidebarProvider = ({
   );
 };
 
-export const Sidebar = ({
-  children,
-  open,
-  setOpen,
-  animate
-}) => {
+export const Sidebar = ({ children, open, setOpen, animate }) => {
   return (
     <SidebarProvider open={open} setOpen={setOpen} animate={animate}>
       {children}
@@ -50,16 +45,12 @@ export const SidebarBody = (props) => {
   return (
     <>
       <DesktopSidebar {...props} />
-      <MobileSidebar {...(props)} />
+      <MobileSidebar {...props} />
     </>
   );
 };
 
-export const DesktopSidebar = ({
-  className,
-  children,
-  ...props
-}) => {
+export const DesktopSidebar = ({ className, children, ...props }) => {
   const { open, setOpen, animate } = useSidebar();
   return (
     <motion.div
@@ -75,21 +66,13 @@ export const DesktopSidebar = ({
       {...props}
     >
       <div className="px-4 py-6 h-full flex flex-col">
-       
-        <div className="space-y-2 flex-grow">
-          {children}
-        </div>
-        
+        <div className="space-y-2 flex-grow">{children}</div>
       </div>
     </motion.div>
   );
 };
 
-export const MobileSidebar = ({
-  className,
-  children,
-  ...props
-}) => {
+export const MobileSidebar = ({ className, children, ...props }) => {
   const { open, setOpen } = useSidebar();
   return (
     <>
@@ -97,11 +80,13 @@ export const MobileSidebar = ({
         className={cn(
           "h-10 px-4 py-4 flex flex-row md:hidden items-center justify-between bg-neutral-100 dark:bg-neutral-800 w-full"
         )}
-        {...props}>
+        {...props}
+      >
         <div className="flex justify-end z-20 w-full">
           <IconMenu2
             className="text-neutral-800 dark:text-neutral-200"
-            onClick={() => setOpen(!open)} />
+            onClick={() => setOpen(!open)}
+          />
         </div>
         <AnimatePresence>
           {open && (
@@ -116,10 +101,12 @@ export const MobileSidebar = ({
               className={cn(
                 "fixed h-full w-full inset-0 bg-black text-white p-10 z-[100] flex flex-col justify-between",
                 className
-              )}>
+              )}
+            >
               <div
                 className="absolute right-10 top-10 z-50 text-white"
-                onClick={() => setOpen(!open)}>
+                onClick={() => setOpen(!open)}
+              >
                 <IconX />
               </div>
               {children}
@@ -131,11 +118,7 @@ export const MobileSidebar = ({
   );
 };
 
-export const SidebarLink = ({
-  link,
-  className,
-  ...props
-}) => {
+export const SidebarLink = ({ link, className, ...props }) => {
   const { open, animate } = useSidebar();
   return (
     <Link
@@ -144,16 +127,19 @@ export const SidebarLink = ({
         "flex items-center justify-start gap-4 group/sidebar py-3 px-2 rounded-lg transition-all duration-300 hover:bg-neutral-800",
         className
       )}
-      {...props}>
+      {...props}
+    >
       {React.cloneElement(link.icon, {
-        className: "text-violet-400 group-hover/sidebar:text-violet-300 w-6 h-6"
+        className:
+          "text-violet-400 group-hover/sidebar:text-violet-300 w-6 h-6",
       })}
       <motion.span
         animate={{
           display: animate ? (open ? "inline-block" : "none") : "inline-block",
           opacity: animate ? (open ? 1 : 0) : 1,
         }}
-        className="text-neutral-300 group-hover/sidebar:text-white text-sm font-medium transition-colors duration-300">
+        className="text-neutral-300 group-hover/sidebar:text-white text-sm font-medium transition-colors duration-300"
+      >
         {link.label}
       </motion.span>
     </Link>
